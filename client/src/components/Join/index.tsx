@@ -1,7 +1,7 @@
 import React, { ChangeEvent, useCallback, useState } from 'react';
 import { Link } from 'react-router-dom';
 
-export const Join: React.FC = () => {
+const Join: React.FC = () => {
   const [name, setName] = useState('');
   const [room, setRoom] = useState('');
 
@@ -51,3 +51,5 @@ export const Join: React.FC = () => {
     </div>
   );
 };
+
+export default Join;
