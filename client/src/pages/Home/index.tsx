@@ -1,9 +1,36 @@
+import React, { ChangeEvent, useCallback, useState } from 'react';
+import { useHistory } from 'react-router-dom';
 import { Divider, Flex, Heading, VStack } from '@chakra-ui/react';
-import React from 'react';
 import Button from '../../components/Button';
 import Input from '../../components/Input';
 
 const Home: React.FC = () => {
+  const history = useHistory();
+  const [name, setName] = useState('');
+  const [room, setRoom] = useState('');
+
+  const handleNameChange = useCallback(
+    (event: ChangeEvent<HTMLInputElement>) => {
+      setName(event.target.value);
+    },
+    [],
+  );
+
+  const handleRoomChange = useCallback(
+    (event: ChangeEvent<HTMLInputElement>) => {
+      setRoom(event.target.value);
+    },
+    [],
+  );
+
+  const handleJoinRoom = useCallback(() => {
+    if (name && room) {
+      history.push(`/chat/?name=${name}&room=${room}`);
+    } else {
+      console.error('error');
+    }
+  }, [history, name, room]);
+
   return (
     <Flex w="100vw" h="100vh" align="center" justify="center">
       <Flex
@@ -22,12 +49,25 @@ const Home: React.FC = () => {
         <Divider my={6} />
 
         <VStack spacing={4}>
-          <Input name="name" type="text" label="User" autoComplete="off" />
-          <Input name="room" type="text" label="Room" />
+          <Input
+            name="name"
+            type="text"
+            label="User"
+            autoComplete="off"
+            value={name}
+            onChange={handleNameChange}
+          />
+          <Input
+            name="room"
+            type="text"
+            label="Room"
+            value={room}
+            onChange={handleRoomChange}
+          />
         </VStack>
 
-        <Button type="submit" mt="8">
-          Entrar
+        <Button type="button" mt="8" onClick={handleJoinRoom}>
+          Join
         </Button>
       </Flex>
     </Flex>
