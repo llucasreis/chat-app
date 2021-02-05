@@ -18,6 +18,7 @@ io.on('connection', (socket: Socket) => {
   console.log('connected');
 
   socket.on('join', data => {
+    console.log(`New connection with id: ${socket.id}`)
     const { name, room } = data as ISocketJoinEvent;
     const user = userModel.addUser({ id: socket.id, name, room });
 
