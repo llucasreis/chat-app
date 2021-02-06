@@ -1,10 +1,9 @@
+import { ChakraProvider, ColorMode, ColorModeScript } from '@chakra-ui/react';
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { ChakraProvider, ColorMode, ColorModeScript } from '@chakra-ui/react';
-import 'dotenv';
 import App from './App';
-import { theme } from './styles/theme';
 import { config } from './styles/config';
+import { theme } from './styles/theme';
 
 ReactDOM.render(
   <React.StrictMode>
